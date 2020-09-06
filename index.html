@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome To the world of Gaming Paradise!!!
+    <h2>Numbers world!!</h2>
+    <label>Enter your lucky number(between 1 to 5):</label><input type="number" id="num"><br>
+    <h4>Press any one of the two buttons </h4>
+    <button onclick="showfib()">Iam lucky yaar!!Press me</button>&nbsp;<button onclick="showfact()">Iam damn sure..He is not!!</button><br><hr>
+    <h2>Real Game starts!!</h2>
+    <h3>1.I am a five-digit whole number, read the same forward, backward and upside down. My second digit is half my third digit(not mathematically); my fifth digit is the product of my first and last digits; and the sum of my whole is ten. What am I?</h3><br>
+    <h4>Enter each digit separately</h4>
+    <button onclick="inputnum()">Press to answer</button>
+    <p id="con"></p><br>
+    <hr>
+    <h1>Strings world!!</h1>
+    <h3>2.Find the missing version of android in the following:</h3>
+    <h3>KitKat,Lollipop,Nougat</h3>
+    <input type="text" placeholder="Enter your answer" id="tech1">
+    <button onclick="fill1()">Check result</button>
+    <p id="splice"></p>
+    <h3>3._______ was originally named BackRub.</h3>
+    <input type="text" placeholder="Enter your answer" id="tech2">
+    <button onclick="fill2()">Check result</button>
+    <p id="concat"></p>
+    <hr>
+    <button onclick="result()">See Your Score</button>
+    <script>
+    var gradepoints=0;
+        //fibonacci series
+    function showfib(){
+    var num1=0; 
+    var num2=1; 
+    var sum; 
+    var i=3; 
+    num=Number(document.getElementById("num").value);
+    if(num==1)
+    {
+     gradepoints=gradepoints+num1;
+     alert("Your initial game point to start your journey is: "+num1);
+    }
+    else if(num==2){
+    gradepoints=gradepoints+num2;
+    alert("Your initial game point to start your journey is:  "+num2);
+    }
+    else{
+    for (i = 3; i <= num; i++)  
+    { 
+        sum=num1+num2; 
+        num1=num2; 
+        num2=sum; 
+    }
+    gradepoints=gradepoints+sum;
+    alert("Your initial game point to start your journey is:  "+sum); 
+    }
+    }
+    //factorial
+    function showfact(){
+    var i, no, fact;
+    fact=1;
+    no=Number(document.getElementById("num").value);
+    for(i=1; i<=no; i++)  
+    {
+     fact= fact*i;
+    } 
+    gradepoints=gradepoints+fact;
+    alert("Your initial game point to start your journey is:  "+fact); 
+    }
+    var arr = [],asort=[];
+    function inputnum(){
+    for(var i = 0; i < 5; i++){
+     arr.push(Number(prompt("Enter digit")));
+    }
+    
+    var ans =[1,0,8,0,1];
+    var count=0;
+    for(var i=0;i<5;i++){
+        if(arr[i]==ans[i]){
+            ++count;
+        }
+    }
+    if(count==5){
+      alert("Hahaa!!Your rigth:)..");
+      gradepoints=gradepoints+100;  
+    }
+    else{
+    alert("Sorry:( You are wrong..Your points will be taken based on the largest digit you have entered..But dont worry you will have a surprise:)");
+    gradepoints=gradepoints+Math.max(...arr);
+    }
+    var con=ans.toString();
+    asort=arr.sort();
+    document.getElementById("con").innerHTML = "Correct answer: "+con;
+    bonus(); 
+    }
+    function bonus(){
+        var myWindow = window.open("", "myWindow", "width=500,height=300");
+        myWindow.document.write( "Bonus points:(Even if your answer was wrong for the first question..If your answer contains 2 digits which occurs two times..You will be awarded 20 points..) ");
+       var b=0;
+        for(var i=0;i<4;i++){
+         if(asort[i]==asort[i+1])
+         {
+             b++;
+             i++;
+         }
+       }
+         if(b==2){
+         gradepoints=gradepoints+20;
+         alert("Woww! Your are lucky..You got bonus");
+      }
+      else{
+        alert("Sorry:( You dint get bonus!!");
+     }
+    
+   
+    }
+    function fill1(){
+        var str;
+        str=document.getElementById("tech1").value;
+        var fr = ["KitKat","Lollipop","Nougat"];
+        if(str=="Marshmallow"){
+         fr.splice(2, 0,str);
+         gradepoints=gradepoints+100;
+         alert("You guessed it right!!\r\n"+fr);
+        }
+        else{
+            fr.splice(2, 0,"Marshmallow");
+            alert("Sorry!!You dint make it\r\nCorrect answer:"+fr);
+        }
+    }
+    function fill2(){
+        var str;
+        str=document.getElementById("tech2").value;
+        var fr = " was originally named BackRub";
+        if(str=="Google"){
+         var res=str.concat(fr);
+         gradepoints=gradepoints+100;
+         alert("You guessed it right!!\r\n"+res);
+        }
+        else{
+            str="Google";
+            var res=str.concat(fr);
+            alert("Sorry!!You dint make it\r\nCorrect answer:"+res);
+        }
+    }
+    function result(){
+        if(gradepoints>=220){
+            alert("Total Score: "+gradepoints);
+        var myWindow = window.open("result1.html", "myWindow", "width=500,height=300");
+             
+        }
+        else{
+            alert("Total Score: "+gradepoints);
+            var myWindow = window.open("result2.html", "myWindow", "width=500,height=300");
+                
+        
+        }
+
+    }
+    
+    </script>
+</body>
+</html>
